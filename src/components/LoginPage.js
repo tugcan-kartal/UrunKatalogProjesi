@@ -26,71 +26,70 @@ function LoginPage() {
 
   return (
 
-	<div className='allOfPage'>
+	<div className='flex m-32 allOfItem bg-gray-100'>
 
-		<div className='fullOfSignUp'>
+		<div>
 			<form>
-				<div className='commoninput'>
-					Ad
-					<input className='styleinput' onChange={(event)=>{setName(event.target.value)}} type='text' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Ad</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setName(event.target.value)}} type='text' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					Soyadı
-					<input className='styleinput' onChange={(event)=>{setSurname(event.target.value)}} type='text' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Soyadı</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setSurname(event.target.value)}} type='text' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					Telefon Numarası
-					<input className='styleinput' onChange={(event)=>{setTel(event.target.value)}} type='number' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Telefon Numarası</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setTel(event.target.value)}} type='number' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					E-mail
-					<input className='styleinput' onChange={(event)=>{setEmail(event.target.value)}} type='email' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>E-mail</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setEmail(event.target.value)}} type='email' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					Şifre
-					<input className='styleinput' onChange={(event)=>{setPassword(event.target.value)}} type='password' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Şifre</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setPassword(event.target.value)}} type='password' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					Şifre Tekrarı
-					<input className='styleinput' type='password' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Şifre Tekrarı</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='password' required ></input>
 				</div>
 
-				<div className='commoninput'>
-            		<button className='styleinputSubmit' type='button' value='Submit' onClick={addSignUpToDB} >register</button>
+				<div>
+            		<button className='input-common p-2 bg-gray-300 text-white m-3 hover:bg-gray-500' type='button' value='Submit' onClick={addSignUpToDB} >register</button>
           		</div>
 
 			</form>
 		</div>
-
-		<div className='fullOfSignIn'>
+		<div className='br'></div>
+		<div>
 
 			<form>
-				<div className='commoninput'>
-					E-mail
-					<input className='styleinput' type='email' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>E-mail</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='email' required ></input>
 				</div>
 
-				<div className='commoninput'>
-					Password
-					<input className='styleinput' type='password' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Password</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='password' required ></input>
           		</div>
 
-				<div className='commoninput'>
-					Remember Me
-					<input className='styleinput' type='checkbox' required ></input>
+				<div>
+					<label className='block text-gray-700 text-sm font-bold'>Remember Me</label>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' required ></input>
 				</div>
 
 				<Link to='/items'>
-					<div className='commoninput'>
-						<button className='styleinputSubmit' type='button' value='Submit' onClick={loginUser} >login</button>
+					<div>
+						<button className='input-common p-2 bg-gray-300 text-white m-3 hover:bg-gray-500' type='button' value='Submit' onClick={loginUser} >login</button>
 					</div>
 				</Link>
-				
 			</form>
 		</div>
 

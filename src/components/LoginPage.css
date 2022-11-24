@@ -1,0 +1,16 @@
+.allOfItem{
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    border-radius: 5%;
+}
+
+.input-common{
+    outline: none;
+    border-radius: 5%;
+}
+
+.br{
+    border-left:1px solid #000;
+    height:500px;
+}
