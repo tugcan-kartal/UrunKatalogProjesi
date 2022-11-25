@@ -12,6 +12,7 @@ function LoginPage() {
 	const [password,setPassword]=useState("");
 
 	const addSignUpToDB=async(event)=>{
+
 		const passInput=document.getElementById("psw");
 		if(passInput?.value.length >= 6){
 			console.log("succeed")
@@ -59,7 +60,7 @@ function LoginPage() {
 
 				<div>
 					<label className='block text-gray-700 text-sm font-bold'>Telefon Numarası</label>
-					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setTel(event.target.value)}} type="number" pattern="[0-9]*" inputmode="numeric" required ></input>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setTel(event.target.value)}} type="number" pattern="[0-9]*" inputMode="numeric" required ></input>
 				</div>
 
 				<div>
@@ -99,7 +100,7 @@ function LoginPage() {
 
 				<div>
 					<label className='block text-gray-700 text-sm font-bold'>Remember Me</label>
-					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' required ></input>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='checkbox' required ></input>
 				</div>
 
 				<Link to='/items'>
