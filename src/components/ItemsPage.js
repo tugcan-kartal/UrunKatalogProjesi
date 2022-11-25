@@ -5,6 +5,15 @@ import './ItemsPage.css';
 function ItemsPage() {
 
     const [infos,setInfos]=useState([]);
+    const [hideStatus,setHideStatus]=useState(false);
+
+    const handleClick=event=>{
+      setHideStatus(current => !current);
+    }
+
+    const goBackToItems=event=>{
+      setHideStatus(current => !current);
+    }
     
     useEffect(()=>{
         axios.get("https://assignment-api.piton.com.tr/api/v1/product/all",{
@@ -23,29 +32,34 @@ function ItemsPage() {
         <div>
           {infos?.map((val)=>{
             return (
-              <div key={val.id}>
+              <div  key={val.id}>
+                
+                <div className={hideStatus ? 'block' : 'hidden'}>
 
-                <div> 
-                  <h3>Name: {val.name}</h3> 
-                  <h5>Price: {val.price}</h5>
+                  <div> 
+                    <h3>Name: {val.name}</h3> 
+                    <h5>Price: {val.price}</h5>
+                  </div>
+
+                  <div onClick={handleClick}>
+                    <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
+                  </div>
+
+                  <div>Number of likes {val.likes} </div>
+
+                  <div> 
+                    <label>Saved in favourite</label>
+                    <input type='checkbox'></input> 
+                  </div>
+
                 </div>
 
-                <div>
-                  <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
-                </div>
-
-                <div>Number of likes {val.likes} </div>
-
-                <div> 
-                  <label>Saved in favourite</label>
-                  <input type='checkbox'></input> 
-                </div>
-
-                <div className='hidden'>
+                
+                <div className={hideStatus ? 'hidden' : 'block'}>
                   <div>{val.name}</div>
                   <div>{val.description}</div>
                   <div>{val.price}</div>
-                  <div> <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img> </div>
+                  <button onClick={goBackToItems}>Go back</button>
                 </div>
 
               </div>  
