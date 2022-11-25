@@ -20,16 +20,16 @@ function ItemsPage() {
 
   return (
     <div>
-        <div>
-            {ınfos.products.map(ınfo=>(
-              <div key={ınfo.id}>
-                <h1>{ınfo.name}</h1>
-                <img src={ınfo.image} alt='image not found'/>
-                <h4>{ınfo.price}</h4>
-                <h4>{ınfo.description}</h4>
-                <h4>{ınfo.timestamp}</h4>
-              </div>
-            ))}
+        <div className='text-red-400'>
+          {ınfos.map((val)=>{
+            return (
+              <div className='friendContainer'>
+                <div className='friend'> 
+                  <h3>Name: {val.products.name}</h3> 
+                </div>
+              </div>  
+            )
+          })}
         </div>
     </div>
   )

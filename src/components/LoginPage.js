@@ -12,6 +12,23 @@ function LoginPage() {
 	const [password,setPassword]=useState("");
 
 	const addSignUpToDB=async(event)=>{
+		const passInput=document.getElementById("psw");
+		if(passInput?.value.length >= 6){
+			console.log("succeed")
+		}else{
+			alert("Password has at least 6 characters");
+			return null;
+		}
+
+		const passcopy=document.getElementById("pswcopy");
+		if (passcopy.value===passInput.value) {
+			console.log("succeed 2");
+		}else{
+			alert("passwords are not match");
+			return null;
+		}
+
+
 		const {data} = await Axios.post('https://assignment-api.piton.com.tr/api/v1/user/register',{name: name,password: password,email: email});
 		const token=data.token;
 		event.preventDefault();
@@ -42,7 +59,7 @@ function LoginPage() {
 
 				<div>
 					<label className='block text-gray-700 text-sm font-bold'>Telefon Numarası</label>
-					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setTel(event.target.value)}} type='number' required ></input>
+					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setTel(event.target.value)}} type="number" pattern="[0-9]*" inputmode="numeric" required ></input>
 				</div>
 
 				<div>
@@ -52,12 +69,12 @@ function LoginPage() {
 
 				<div>
 					<label className='block text-gray-700 text-sm font-bold'>Şifre</label>
-					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setPassword(event.target.value)}} type='password' required ></input>
+					<input id='psw'  className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' onChange={(event)=>{setPassword(event.target.value)}} type='password' required ></input>
 				</div>
 
 				<div>
 					<label className='block text-gray-700 text-sm font-bold'>Şifre Tekrarı</label>
-					<input className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='password' required ></input>
+					<input id='pswcopy' className='input-common p-2 bg-gray-300 text-white m-3 focus:bg-gray-400' type='password' required ></input>
 				</div>
 
 				<div>
