@@ -5,7 +5,7 @@ import './ItemsPage.css';
 function ItemsPage() {
 
     const [infos,setInfos]=useState([]);
-    const [hideStatus,setHideStatus]=useState(false);
+    const [hideStatus,setHideStatus]=useState(true);
 
     const handleClick=event=>{
       setHideStatus(current => !current);
@@ -32,6 +32,7 @@ function ItemsPage() {
         <div>
           {infos?.map((val)=>{
             return (
+              
               <div  key={val.id}>
                 
                 <div className={hideStatus ? 'block' : 'hidden'}>
@@ -70,4 +71,4 @@ function ItemsPage() {
   )
 }
 
-export default ItemsPage
+export default ItemsPage;
