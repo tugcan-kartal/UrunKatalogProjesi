@@ -6,6 +6,7 @@ function ItemsPage() {
 
     const [infos,setInfos]=useState([]);
     const [favs,setFavs]=useState([]);
+    const [popUp,setPopUp]=useState("");
 
     const addToFav=(id)=>{
       
@@ -15,12 +16,24 @@ function ItemsPage() {
         }
       }).then((response)=>{
         const favList=[...favs,response.data.product]
-        console.log(favList);
         setFavs(favList);
       }).catch((err)=>{
         console.log(err.message);
       })
 
+    }
+
+    const toShowDetails=(id)=>{
+      axios.get(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`,{
+        headers: {
+          "access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImlhdCI6MTY1MDE4OTM0NywiZXhwIjoxNjc2MTA5MzQ3fQ.r7j-guzdX9M9LVaxzwGtLvACwI3HbfbGkOj-QbHKRJo"
+        }
+      }).then((response)=>{
+        const toShowItem=response.data.product;
+        setPopUp(toShowItem);
+      }).catch((err)=>{
+        console.log(err.message);
+      })
     }
 
     useEffect(()=>{
@@ -53,7 +66,7 @@ function ItemsPage() {
                   </div>
 
                   <div>
-                    <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
+                    <img onClick={()=>toShowDetails(val.id)} src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
                   </div>
 
                   <div>Number of likes {val.likes} </div>
@@ -72,7 +85,9 @@ function ItemsPage() {
 
         <div>
 
-            
+            <div>{popUp.name}</div>
+            <div>{popUp.price}</div>
+            <div>{popUp.description}</div>
 
         </div>
 
