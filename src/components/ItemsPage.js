@@ -6,16 +6,19 @@ function ItemsPage() {
 
     const [infos,setInfos]=useState([]);
     const [favs,setFavs]=useState([]);
-    const [popUp,setPopUp]=useState();
 
     const addToFav=(id)=>{
       
-      axios.post(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`).then((response)=>{
-        const favNewElement=[...favs,response.product];
-        setFavs(favNewElement);
-        setPopUp(response.product)
-      }).catch(()=>{
-        console.log("err");
+      axios.get(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`,{
+        headers: {
+          "access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImlhdCI6MTY1MDE4OTM0NywiZXhwIjoxNjc2MTA5MzQ3fQ.r7j-guzdX9M9LVaxzwGtLvACwI3HbfbGkOj-QbHKRJo"
+        }
+      }).then((response)=>{
+        const favList=[...favs,response.data.product]
+        console.log(favList);
+        setFavs(favList);
+      }).catch((err)=>{
+        console.log(err.message);
       })
 
     }
@@ -69,16 +72,7 @@ function ItemsPage() {
 
         <div>
 
-            <div> 
-                    <h3>Name: {popUp.name}</h3> 
-                    <h5>Price: {popUp.price}</h5>
-                    <h3>Name: {popUp.description}</h3> 
-                    <h5>Price: {popUp.timeStamp}</h5>
-            </div>
-
-            <div>
-              <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
-            </div>
+            
 
         </div>
 
