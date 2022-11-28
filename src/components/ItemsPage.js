@@ -5,16 +5,21 @@ import './ItemsPage.css';
 function ItemsPage() {
 
     const [infos,setInfos]=useState([]);
-    const [hideStatus,setHideStatus]=useState(true);
+    const [favs,setFavs]=useState([]);
+    const [popUp,setPopUp]=useState();
 
-    const handleClick=event=>{
-      setHideStatus(current => !current);
+    const addToFav=(id)=>{
+      
+      axios.post(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`).then((response)=>{
+        const favNewElement=[...favs,response.product];
+        setFavs(favNewElement);
+        setPopUp(response.product)
+      }).catch(()=>{
+        console.log("err");
+      })
+
     }
 
-    const goBackToItems=event=>{
-      setHideStatus(current => !current);
-    }
-    
     useEffect(()=>{
         axios.get("https://assignment-api.piton.com.tr/api/v1/product/all",{
           headers:{
@@ -29,20 +34,22 @@ function ItemsPage() {
 
   return (
     <div>
+    
+
         <div>
           {infos?.map((val)=>{
             return (
               
               <div  key={val.id}>
                 
-                <div className={hideStatus ? 'block' : 'hidden'}>
+                <div>
 
                   <div> 
                     <h3>Name: {val.name}</h3> 
                     <h5>Price: {val.price}</h5>
                   </div>
 
-                  <div onClick={handleClick}>
+                  <div>
                     <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
                   </div>
 
@@ -50,23 +57,31 @@ function ItemsPage() {
 
                   <div> 
                     <label>Saved in favourite</label>
-                    <input type='checkbox'></input> 
+                    <input onClick={()=>addToFav(val.id)} type='checkbox'></input> 
                   </div>
-
+            
                 </div>
-
                 
-                <div className={hideStatus ? 'hidden' : 'block'}>
-                  <div>{val.name}</div>
-                  <div>{val.description}</div>
-                  <div>{val.price}</div>
-                  <button onClick={goBackToItems}>Go back</button>
-                </div>
-
               </div>  
             )
           })}
         </div>
+
+        <div>
+
+            <div> 
+                    <h3>Name: {popUp.name}</h3> 
+                    <h5>Price: {popUp.price}</h5>
+                    <h3>Name: {popUp.description}</h3> 
+                    <h5>Price: {popUp.timeStamp}</h5>
+            </div>
+
+            <div>
+              <img src='https://www.atap.com.tr/storage/images/32b84246280a488fa70b9933f3c42647.jpg' ></img>
+            </div>
+
+        </div>
+
     </div>
   )
 }
