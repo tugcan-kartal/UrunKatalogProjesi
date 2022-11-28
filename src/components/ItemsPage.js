@@ -7,6 +7,7 @@ function ItemsPage() {
     const [infos,setInfos]=useState([]);
     const [favs,setFavs]=useState([]);
     const [popUp,setPopUp]=useState("");
+    const [hide,setHide]=useState(true);
 
     const addToFav=(id)=>{
       
@@ -24,6 +25,7 @@ function ItemsPage() {
     }
 
     const toShowDetails=(id)=>{
+      setHide(current => !current);
       axios.get(`https://assignment-api.piton.com.tr/api/v1/product/get/${id}`,{
         headers: {
           "access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImlhdCI6MTY1MDE4OTM0NywiZXhwIjoxNjc2MTA5MzQ3fQ.r7j-guzdX9M9LVaxzwGtLvACwI3HbfbGkOj-QbHKRJo"
@@ -34,6 +36,10 @@ function ItemsPage() {
       }).catch((err)=>{
         console.log(err.message);
       })
+    }
+
+    const ToGoBack=()=>{
+      setHide(current => !current);
     }
 
     useEffect(()=>{
@@ -51,12 +57,11 @@ function ItemsPage() {
   return (
     <div>
     
-
-        <div>
+        <div className={hide ? "block m-8": "hidden"}>
           {infos?.map((val)=>{
             return (
               
-              <div  key={val.id}>
+              <div className='m-16'  key={val.id}>
                 
                 <div>
 
@@ -83,11 +88,12 @@ function ItemsPage() {
           })}
         </div>
 
-        <div>
+        <div className={hide ? "hidden": "block"}>
 
             <div>{popUp.name}</div>
             <div>{popUp.price}</div>
             <div>{popUp.description}</div>
+            <button onClick={()=>ToGoBack()} value='go back'>Go back</button>
 
         </div>
 
