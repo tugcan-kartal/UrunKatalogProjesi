@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import './ItemsPage.css';
+import { Link } from 'react-router-dom';
 
 function ItemsPage() {
 
@@ -18,6 +19,10 @@ function ItemsPage() {
       }).then((response)=>{
         const favList=[...favs,response.data.product]
         setFavs(favList);
+        localStorage.setItem("name",response.data.product.name);
+        localStorage.setItem("price",response.data.product.price);
+        localStorage.setItem("description",response.data.product.description);
+        console.log(favs);
       }).catch((err)=>{
         console.log(err.message);
       })
@@ -56,6 +61,10 @@ function ItemsPage() {
 
   return (
     <div>
+
+        <Link to="fav-items">
+          <div>Go Favourite</div>
+        </Link>
     
         <div className={hide ? "block m-8": "hidden"}>
           {infos?.map((val)=>{
